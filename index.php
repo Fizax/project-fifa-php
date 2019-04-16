@@ -12,6 +12,7 @@
     <h1>Plan je Fifa!</h1>
     <div class="index">
         <div class="description">
+            <h2>Login</h2>
             <form action="loginController.php" method="post">
                 <input type="hidden" name="type" value="login">
                 <div class="form-group">
@@ -31,6 +32,7 @@
             </form>
         </div>
         <div>
+            <h2>Register</h2>
             <form action="loginController.php" method="post">
                 <input type="hidden" name="type" value="register">
 
@@ -45,7 +47,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="password1">Please confirm your password</label>
+                    <label for="password1">Wachtwoord herhalen</label>
                     <input type="password" name="password1" id="password1" required>
                 </div>
 
