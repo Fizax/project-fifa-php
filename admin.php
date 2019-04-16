@@ -5,16 +5,17 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css">
     <title>Fifa</title>
 </head>
 <body>
 <div class="index">
     <div class="description">
-        <a href="team.php"></a>
+        <a href="team.php">Maak een team aan</a>
         
     </div>
     <div>
-        <a href="scheme.php"></a>
+        <a href="scheme.php">Bekijk de wedstrijd schema</a>
     </div>
 </div>
 </body>
