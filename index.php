@@ -9,10 +9,10 @@
     <title>Fifa</title>
 </head>
 <body>
-    <h1>Plan je Fifa!</h1>
+    <h1>Plan je Fifa Wedstrijd!</h1>
     <div class="index">
         <div class="description">
-            <h2>Login</h2>
+            <h2>Login </h2>
             <form action="loginController.php" method="post">
                 <input type="hidden" name="type" value="login">
                 <div class="form-group">
