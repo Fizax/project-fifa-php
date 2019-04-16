@@ -1,0 +1,55 @@
+body {
+    background-image: url("img/foot.jpg");
+    font-family: Arial;
+}
+h1 {
+    text-align: center;
+    color: white;
+
+}
+@media only screen and (max-width: 578px) {
+    iframe {
+        width: 500px;
+        height: 300px;
+    }
+}
+@media only screen and (max-width: 520px){
+    iframe {
+        width: 250px;
+        height: 150px;
+    }
+}
+@media only screen and (max-width: 1016px) {
+    .index {
+        display: flex;
+        flex-direction: column;
+    }
+}
+@media only screen and (max-width: 1434px){
+    img {
+        width: 50%;
+    }
+}
+.index {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+}
+.description {
+
+}
+
+form {
+    color: white;
+    background-color: black;
+    padding: 10px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+}
+
