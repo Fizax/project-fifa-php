@@ -25,7 +25,6 @@ if ($_POST ['type'] == 'register'){
         ':email' => $email
     ]);
 
-
     if (empty($_POST["email"])) {
         echo 'Email is required';
     } else {
@@ -35,7 +34,11 @@ if ($_POST ['type'] == 'register'){
             $emailErr = "Invalid email format";
         }
     }
-
+    if(empty($password) || empty($password1)  || empty($email))
+    {
+        echo 'vul de email, wachtwoord in en herhaal wachtwoord';
+        exit;
+    }
     $fetchedEmail = $prepare->fetchAll(PDO::FETCH_ASSOC);
 
     IF($fetchedEmail == true){
@@ -69,6 +72,7 @@ values (:email, :password)";
     else{
         echo "Wachtwoord komt niet overheen";
     }
+
 }
 
 if ($_POST ['type'] == 'login') {
