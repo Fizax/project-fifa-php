@@ -33,10 +33,6 @@
         <div>
             <form action="loginController.php" method="post">
                 <input type="hidden" name="type" value="register">
-                <div class="form-group">
-                    <label for="username">username</label>
-                    <input type="text" name="username" id="username">
-                </div>
 
                 <div class="form-group">
                     <label for="email">email</label>
