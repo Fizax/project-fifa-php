@@ -92,6 +92,6 @@ if ($_POST ['type'] == 'login') {
     }
     else{
         echo 'u heeft niet de goede email of wachtwoord';
-        header('Location: login.php');
+        header('Location: index.php');
     }
 }

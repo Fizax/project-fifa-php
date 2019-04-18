@@ -1,3 +1,6 @@
+<?php
+
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,6 +12,7 @@
     <title>Fifa</title>
 </head>
 <body>
+
 <div class="index">
     <div class="description">
         <a href="team.php">Maak een team aan</a>
