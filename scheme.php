@@ -20,9 +20,10 @@ $teams = $query->fetchAll(PDO::FETCH_ASSOC); //multie demensionale array //alle 
 <?php
 echo '<ul>';
 foreach ($teams as $team){
-    $username = htmlentities($team['name']);
-    $email = htmlentities($team ['players']);
-    echo "<li><a href='scheme.php?id={$team['id']}'>$name, $players</a></li>";
+    $name = htmlentities($team['name']);
+    $players= htmlentities($team ['players']);
+    $coach= htmlentities($team ['coach']);
+    echo "<li><a href='scheme.php?id={$team['id']}'>$name $players $coach</a></li>";
 }
 echo '</ul>';
 ?>

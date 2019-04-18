@@ -27,6 +27,10 @@ $teams = $query->fetchAll(PDO::FETCH_ASSOC); //multie demensionale array //alle 
         <label for="players">spelers</label>
         <input type="text" name="players" id="players" placeholder="Tim, Rik, Daan etc..">
     </div>
+    <div class="form-group">
+        <label for="coach">Coach</label>
+        <input type="text" name="coach" id="coach" placeholder="Erwin Arthur">
+    </div>
 
     <div class="button">
         <input type="submit" value="+">

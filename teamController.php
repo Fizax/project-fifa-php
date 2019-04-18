@@ -17,14 +17,16 @@ if ($_POST ['type'] == 'create'){
 
     $name = $_POST['name'];
     $players = $_POST['players'];
+    $coach = $_POST['coach'];
 
-    $sql = "INSERT INTO teams (name, players) 
-values (:name, :players)";
+    $sql = "INSERT INTO teams (name, players, coach) 
+values (:name, :players, :coach)";
 
     $prepare = $db->prepare($sql);
     $prepare->execute([
         ':name'  => $name,
-        ':players'=> $players
+        ':players'=> $players,
+        ':coach'=> $coach
     ]);
     header('Location: index.php');//wil string weten
     exit;
