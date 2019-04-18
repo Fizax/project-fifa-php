@@ -88,7 +88,9 @@ if ($_POST ['type'] == 'login') {
 
     $info = $prepare->fetch(PDO::FETCH_ASSOC);
     if ($info != null){
-        header('Location: admin.php');
+        session_start();
+        $_SESSION['sid']=session_id();
+        header("location:securepage.php");
     }
     else{
         echo 'u heeft niet de goede email of wachtwoord';
