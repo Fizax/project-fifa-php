@@ -79,21 +79,23 @@ if ($_POST ['type'] == 'login') {
     $email =        $_POST['email'];
     $password =     $_POST['password'];
 
-    $sql = "SELECT * FROM users WHERE  email = :email AND password = :password";
-    $prepare = $db->prepare($sql);
-    $prepare ->execute([
-        ':email'        => $email,
-        ':password'     => $password
-    ]);
+    $connect = mysqli_connect($dbHost, $dbUser, $dbPss, $dbName );
 
-    $info = $prepare->fetch(PDO::FETCH_ASSOC);
-    if ($info != null){
-        session_start();
-        $_SESSION['sid']=session_id();
-        header("location:securepage.php");
-    }
-    else{
-        echo 'u heeft niet de goede email of wachtwoord';
-        header('Location: index.php');
+    $sqlLogin = "SELECT * FROM users WHERE  email = '".$email."'";
+
+    $query = mysqli_query($connect, $sqlLogin);
+
+    if(mysqli_num_rows($query) > 0){
+        $row = mysqli_fetch_array($query);
+        $userPasswordUnhash =$row['password'];
+
+        if(password_verify($password, $userPasswordUnhash)) {
+            session_start();
+            $_SESSION['sid']=session_id();
+            header("location:securepage.php");
+        }
+        else{
+            header('Location: index.php');
+        }
     }
 }
