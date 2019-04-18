@@ -5,6 +5,7 @@
  * Date: 18-Apr-19
  * Time: 09:23
  */
+require 'config.php';
 
 session_start();
 if($_SESSION['sid']==session_id())
