@@ -57,7 +57,7 @@ if ($_POST ['type'] == 'register'){
         $sql = "INSERT INTO users (email, password) 
 values (:email, :password)";
 
-        //$password = password_hash($password, PASSWORD_DEFAULT);
+        $password = password_hash($password, PASSWORD_DEFAULT);
 
         $prepare = $db->prepare($sql);
         $prepare->execute([
