@@ -12,6 +12,8 @@ if ($_SERVER['REQUEST_METHOD'] != 'POST'){
 }
 
 require 'config.php'; //nu beschikking tot de db variable
+$sql = "SELECT `admin` FROM users WHERE `admin` = :admin;";
+session_start();
 
 if ($_POST ['type'] == 'register'){
 
@@ -84,7 +86,6 @@ if ($_POST ['type'] == 'login') {
     $connect = mysqli_connect($dbHost, $dbUser, $dbPss, $dbName);
 
     $sqlLogin = "SELECT * FROM users WHERE  email = '" . $email . "'";
-
     $query = mysqli_query($connect, $sqlLogin);
 
     if (mysqli_num_rows($query) > 0) {
@@ -95,7 +96,10 @@ if ($_POST ['type'] == 'login') {
             session_start();
             $_SESSION['sid'] = session_id();
 
-            if ($admin['admin'] == 0) {
+
+            if ($row['admin'] == 1) {
+                $_SESSION['admin'] = true;
+
                 header("location:admin.php");
             }
             else {
