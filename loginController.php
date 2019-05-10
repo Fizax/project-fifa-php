@@ -54,18 +54,19 @@ if ($_POST ['type'] == 'register'){
 
     if($password == $password1) {
 
-        $sql = "INSERT INTO users (email, password) 
-values (:email, :password)";
+        $sql = "INSERT INTO users (email, password, admin) 
+values (:email, :password, :admin)";
 
         $password = password_hash($password, PASSWORD_DEFAULT);
 
         $prepare = $db->prepare($sql);
         $prepare->execute([
             ':email'     => $email,
-            ':password'  => $password
+            ':password'  => $password,
+            ':admin'     => $admin
         ]);
 
-        header('Location: index.php');
+            header('Location: index.php');
 
         exit;
     }
@@ -76,25 +77,32 @@ values (:email, :password)";
 }
 
 if ($_POST ['type'] == 'login') {
-    $email =        $_POST['email'];
-    $password =     $_POST['password'];
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $admin= $_POST['admin'];
 
-    $connect = mysqli_connect($dbHost, $dbUser, $dbPss, $dbName );
+    $connect = mysqli_connect($dbHost, $dbUser, $dbPss, $dbName);
 
-    $sqlLogin = "SELECT * FROM users WHERE  email = '".$email."'";
+    $sqlLogin = "SELECT * FROM users WHERE  email = '" . $email . "'";
 
     $query = mysqli_query($connect, $sqlLogin);
 
-    if(mysqli_num_rows($query) > 0){
+    if (mysqli_num_rows($query) > 0) {
         $row = mysqli_fetch_array($query);
-        $userPasswordUnhash =$row['password'];
+        $userPasswordUnhash = $row['password'];
 
-        if(password_verify($password, $userPasswordUnhash)) {
+        if (password_verify($password, $userPasswordUnhash)) {
             session_start();
-            $_SESSION['sid']=session_id();
-            header("location:securepage.php");
+            $_SESSION['sid'] = session_id();
+
+            if ($admin['admin'] == 0) {
+                header("location:admin.php");
+            }
+            else {
+                header("location:securepage.php");
+            }
         }
-        else{
+        else {
             header('Location: index.php');
         }
     }

@@ -36,6 +36,5 @@ $teams = $query->fetchAll(PDO::FETCH_ASSOC); //multie demensionale array //alle 
         <input type="submit" value="+">
     </div>
 </form>
-
 </body>
 </html>
