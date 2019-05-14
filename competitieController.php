@@ -18,7 +18,7 @@ $rand = rand();
 function halfmatch(array $teams, $rand = false) {
     $numPlayers = count($teams);
 
-    // bij een oneven een op tellen en een place holder
+    // bij een oneven een op tellen en een place holder plaatsen
     if($numPlayers%2) {
         $teams[] = null;
         $numPlayers++;
@@ -30,13 +30,13 @@ function halfmatch(array $teams, $rand = false) {
 
     $matchups = array();
 
-    // iedere wedstrijd genereren
+    // wedstrijden genereren
     for($j = 0; $j < $numSets; $j++) {
         // lijst door 2 delen
         $halves = array_chunk($teams, $numMatches);
-        // draai de lijst om
+        // draai de lijst om en plaats ze dan vervolgens zo
         $halves[1] = array_reverse($halves[1]);
-        // maken van iedere math in een setje
+        // maken van iedere math een setje  om tegen elkaar te gaan
         for($i = 0; $i < $numMatches; $i++) {
             // laat iedere team tegenelkaar spelen
             $matchups[$j][$i][0] = $halves[0][$i];
@@ -44,12 +44,12 @@ function halfmatch(array $teams, $rand = false) {
         }
         // verwijder de 1e team
         $first = array_shift($teams);
-        // verplaats de tweede speler naar het einde
+        // verplaats de tweede team naar het einde
         $teams[] = array_shift($teams);
         // plaats de item weer terug op zijn positie
         array_unshift($teams, $first);
     }
-                                                             
+
     // schud de teams als dit nodig is
     if($rand) {
         foreach($matchups as &$match) {
@@ -60,7 +60,6 @@ function halfmatch(array $teams, $rand = false) {
 
     return $matchups;
 }
-
 
 echo 'wedstrijd schemas: ' ;
 echo '<ul>';
