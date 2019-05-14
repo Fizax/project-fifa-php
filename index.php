@@ -1,68 +1,97 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
-    <title>Fifa</title>
+    <title>FIFA 2017-2018 Player Stats</title>
+    <link rel="icon" type="image/png" href="soccer-ball.png">
+    <link rel="stylesheet" type="text/css" href="fifa.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Roboto|Spectral+SC" rel="stylesheet">
 </head>
 <body>
-    <h1>Plan je Fifa Wedstrijd!</h1>
-    <div class="index">
-        <div class="description">
-            <h2>Login </h2>
-            <form action="loginController.php" method="post">
-                <input type="hidden" name="type" value="login">
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email">
-                </div>
+<header>
+    <h1>FIFA 2016-2017 Player Stats</h1>
+    <p>A complete record of statistics for all FIFA players</p>
+</header>
 
-                <div class="form-group">
-                    <label for="password">wachtwoord</label>
-                    <input type="password" name="password" id="password">
-                </div>
+<main>
+    <section class="description">
+        
+    </section>
 
-                <div class="button">
-                    <input type="submit" value="login">
-                </div>
+    <section class="form">
+        <article>
+            <h2>Stats</h2>
+            <p>Use the form below to view the stats on players from your favorite club!</p>
+        </article>
 
-            </form>
-        </div>
-        <div>
-            <h2>Register</h2>
-            <form action="loginController.php" method="post">
-                <input type="hidden" name="type" value="register">
+        <!-- Form -->
+        <form method="POST" action="fifa_cgi.py">
 
-                <div class="form-group">
-                    <label for="email">email</label>
-                    <input type="email" name="email" id="email" required>
-                </div>
+            <!-- Club name -->
+            <label for="club">Select a club:</label>
+            <select name="club" id="club">
 
-                <div class="form-group">
-                    <label for="password">password</label>
-                    <input type="password" name="password" id="password" required>
-                </div>
+                <optgroup label="Spanish Primera Divisi&oacute;n">
+                    <option>Athletic Club de Bilbao</option>
+                    <option>Athl&eacute;tico Madrid</option>
+                    <option>CD Legan&eacute;s</option>
+                    <option>Deportivo Alav&eacute;s</option>
+                    <option>FC Barcelona</option>
+                    <option>Getafe CF</option>
+                    <option>Girona CF</option>
+                    <option>Levante UD</option>
 
-                <div class="form-group">
-                    <label for="password1">Wachtwoord herhalen</label>
-                    <input type="password" name="password1" id="password1" required>
-                </div>
+                </optgroup>
+                <optgroup label="English Premier League">
+                    <option>Arsenal</option>
+                    <option>Aston Villa</option>
+                    <option>Blackburn Rovers</option>
+                    <option>Bolton Wanderers</option>
 
+                </optgroup>
+                <optgroup label="Italian Serie A">
+                    <option>Atalanta</option>
+                    <option>Benevento Calcio</option>
+                    <option>Bologna</option>
+                    <option>Cagliari</option>
+                    <option>Chievo Verona</option>
+                    <option>Crotone</option>
+                    <option>Ferrera (SPAL)</option>
+                    <option>Fiorentina</option>
+                    <option>Genoa</option>
+                    <option>Hellas Verona</option>
+                    <option>Inter</option>
 
-                <label class="container">
-                    <input type="checkbox" name="boxname" value='itsChecked' required>
-                    <span class="checkmark">akoord met algemene voorwaarde</span>
-                </label>
+                </optgroup>
+            </select>
+            <br><br>
 
-                <div class="button">
-                    <input type="submit" value="Register" name="button">
-                </div>
-            </form>
-        </div>
-    </div>
-    
+            <!-- Quantity -->
+            <label for="quantity">Select a number of players:</label>
+            <select name="quantity" id="quantity">
+                <option>5</option>
+                <option>10</option>
+                <option>15</option>
+                <option>20</option>
+            </select>
+            <br><br>
+
+            <!-- Sorting options -->
+            <label for="sorting">How would you like the results sorted?</label>
+            <select name="sorting" id="sorting">
+                <option value="name">Name</option>
+                <option value="age">Age</option>
+                <option value="nationality">Nationality</option>
+            </select>
+
+            <br><br>
+            <input type="submit" value="Submit">
+            <input type="reset" value="Reset values">
+        </form>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; Groep1</p>
+</footer>
 </body>
 </html>
