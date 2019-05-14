@@ -15,57 +15,59 @@ $teams = $query->fetchAll(PDO::FETCH_ASSOC);
 
 $rand = rand();
 
-function halfmatch(array $teams, $rand = false) {
-    $numPlayers = count($teams);
+if ($_POST ['type'] == 'team') {
+    function halfmatch(array $teams, $rand = false)
+    {
+        $numPlayers = count($teams);
 
-    // bij een oneven een op tellen en een place holder plaatsen
-    if($numPlayers%2) {
-        $teams[] = null;
-        $numPlayers++;
-    }
-
-    // uit rekenen hoeveel wedstrijden er moeten zijn
-    $numSets = $numPlayers-1;
-    $numMatches = $numPlayers/2;
-
-    $matchups = array();
-
-    // wedstrijden genereren
-    for($j = 0; $j < $numSets; $j++) {
-        // lijst door 2 delen
-        $halves = array_chunk($teams, $numMatches);
-        // draai de lijst om en plaats ze dan vervolgens zo
-        $halves[1] = array_reverse($halves[1]);
-        // maken van iedere math een setje  om tegen elkaar te gaan
-        for($i = 0; $i < $numMatches; $i++) {
-            // laat iedere team tegenelkaar spelen
-            $matchups[$j][$i][0] = $halves[0][$i];
-            $matchups[$j][$i][1] = $halves[1][$i];
+        // bij een oneven een op tellen en een place holder plaatsen
+        if ($numPlayers % 2) {
+            $teams[] = null;
+            $numPlayers++;
         }
-        // verwijder de 1e team
-        $first = array_shift($teams);
-        // verplaats de tweede team naar het einde
-        $teams[] = array_shift($teams);
-        // plaats de item weer terug op zijn positie
-        array_unshift($teams, $first);
-    }
 
-    // schud de teams als dit nodig is
-    if($rand) {
-        foreach($matchups as &$match) {
-            shuffle($match);
+        // uit rekenen hoeveel wedstrijden er moeten zijn
+        $numSets = $numPlayers - 1;
+        $numMatches = $numPlayers / 2;
+
+        $matchups = array();
+
+        // wedstrijden genereren
+        for ($j = 0; $j < $numSets; $j++) {
+            // lijst door 2 delen
+            $halves = array_chunk($teams, $numMatches);
+            // draai de lijst om en plaats ze dan vervolgens zo
+            $halves[1] = array_reverse($halves[1]);
+            // maken van iedere math een setje  om tegen elkaar te gaan
+            for ($i = 0; $i < $numMatches; $i++) {
+                // laat iedere team tegenelkaar spelen
+                $matchups[$j][$i][0] = $halves[0][$i];
+                $matchups[$j][$i][1] = $halves[1][$i];
+            }
+            // verwijder de 1e team
+            $first = array_shift($teams);
+            // verplaats de tweede team naar het einde
+            $teams[] = array_shift($teams);
+            // plaats de item weer terug op zijn positie
+            array_unshift($teams, $first);
         }
-        shuffle($matchups);
+
+        // schud de teams als dit nodig is
+        if ($rand) {
+            foreach ($matchups as &$match) {
+                shuffle($match);
+            }
+            shuffle($matchups);
+        }
+
+        return $matchups;
     }
 
-    return $matchups;
+    echo 'wedstrijd schemas: ';
+    echo '<ul>';
+    echo print_r(halfmatch($teams));
+    echo '</ul>';
 }
-
-echo 'wedstrijd schemas: ' ;
-echo '<ul>';
-echo print_r(halfmatch($teams));
-echo '</ul>';
-
 //foreach ($teams as $team){
 //    $random_keys=array_rand( $team,3);
 //    echo $team[$random_keys[0]]."<br>";

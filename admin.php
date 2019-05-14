@@ -24,4 +24,16 @@ echo "<a href='logout.php'>Logout</a>";
 else {
     header("location:index.php");
 }
+
 ?>
+
+<div class="index">
+    <div class="description">
+        <form action="competitieController.php" method="post">
+            <input type="hidden" name="type" value="team">
+            <div class="button">
+                <input type="submit" value="team">
+            </div>
+
+        </form>
+    </div>

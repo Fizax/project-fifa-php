@@ -56,16 +56,15 @@ if ($_POST ['type'] == 'register'){
 
     if($password == $password1) {
 
-        $sql = "INSERT INTO users (email, password, admin) 
-values (:email, :password, :admin)";
+        $sql = "INSERT INTO users (email, password ) 
+values (:email, :password)";
 
         $password = password_hash($password, PASSWORD_DEFAULT);
 
         $prepare = $db->prepare($sql);
         $prepare->execute([
             ':email'     => $email,
-            ':password'  => $password,
-            ':admin'     => $admin
+            ':password'  => $password
         ]);
 
             header('Location: index.php');
