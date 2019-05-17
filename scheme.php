@@ -16,16 +16,36 @@ $teams = $query->fetchAll(PDO::FETCH_ASSOC); //multie demensionale array //alle 
 </head>
 <body>
 
-<h2>Teams</h2>
+<h2>Teams voeg spelers toe</h2>
 <?php
 echo '<ul>';
 foreach ($teams as $team){
     $name = htmlentities($team['name']);
-    $players= htmlentities($team ['players']);
-    $coach= htmlentities($team ['coach']);
-    echo "<li><a href='scheme.php?id={$team['id']}'>$name $players $coach</a></li>";
+    $coach= htmlentities($team ['maker']);
+    echo "<li><a href='teamDetail.php?id={$team['id']}'>$name $coach</a></li>";
 }
 echo '</ul>';
 ?>
+
 </body>
 </html>
+<?php
+require 'config.php';
+$sql = "SELECT * FROM teams";
+$query = $db->query($sql);
+$teams = $query->fetchAll(PDO::FETCH_ASSOC);
+$amountOfTeams = count($teams);
+
+echo "<ul>";
+    foreach ($teams as $team){
+    $teams = array_slice($teams, 1, $amountOfTeams);
+
+    foreach ($teams as $oppositeTeam){
+    $team1 = $team['name'];
+    $team2 = $oppositeTeam['name'];
+    echo "<li>$team1" . " - " . "$team2</li>";
+    }
+    }
+    echo "</ul>";
+
+?>

@@ -90,6 +90,7 @@
     </section>
 </main>
 
+<a href="login.php">login</a>
 <footer>
     <p>&copy; Groep1</p>
 </footer>

@@ -9,96 +9,48 @@
 
 require 'config.php';
 
-$sql = "SELECT * FROM `teams` ORDER BY `teams`.`name`";
+$sql = "SELECT * FROM teams";
+
 $query = $db->query($sql);
+
 $teams = $query->fetchAll(PDO::FETCH_ASSOC);
 
-$rand = rand();
 
-if ($_POST ['type'] == 'team') {
-    function halfmatch(array $teams, $rand = false)
-    {
-        $numPlayers = count($teams);
 
-        // bij een oneven een op tellen en een place holder plaatsen
-        if ($numPlayers % 2) {
-            $teams[] = null;
-            $numPlayers++;
-        }
+$amountOfTeams = count($teams);
 
-        // uit rekenen hoeveel wedstrijden er moeten zijn
-        $numSets = $numPlayers - 1;
-        $numMatches = $numPlayers / 2;
+echo "<ul>";
+foreach ($teams as $team){
+    $teams = array_slice($teams, 1, $amountOfTeams);
 
-        $matchups = array();
-
-        // wedstrijden genereren
-        for ($j = 0; $j < $numSets; $j++) {
-            // lijst door 2 delen
-            $halves = array_chunk($teams, $numMatches);
-            // draai de lijst om en plaats ze dan vervolgens zo
-            $halves[1] = array_reverse($halves[1]);
-            // maken van iedere math een setje  om tegen elkaar te gaan
-            for ($i = 0; $i < $numMatches; $i++) {
-                // laat iedere team tegenelkaar spelen
-                $matchups[$j][$i][0] = $halves[0][$i];
-                $matchups[$j][$i][1] = $halves[1][$i];
-            }
-            // verwijder de 1e team
-            $first = array_shift($teams);
-            // verplaats de tweede team naar het einde
-            $teams[] = array_shift($teams);
-            // plaats de item weer terug op zijn positie
-            array_unshift($teams, $first);
-        }
-
-        // schud de teams als dit nodig is
-        if ($rand) {
-            foreach ($matchups as &$match) {
-                shuffle($match);
-            }
-            shuffle($matchups);
-        }
-
-        return $matchups;
+    foreach ($teams as $oppositeTeam){
+        $team1 = $team['name'];
+        $team2 = $oppositeTeam['name'];
+        echo "<li>$team1" . " - " . "$team2</li>";
     }
-
-    echo 'wedstrijd schemas: ';
-    echo '<ul>';
-    echo print_r(halfmatch($teams));
-    echo '</ul>';
 }
-//foreach ($teams as $team){
-//    $random_keys=array_rand( $team,3);
-//    echo $team[$random_keys[0]]."<br>";
-//    echo $team[$random_keys[1]]."<br>";
-//    echo $team[$random_keys[2]];
-//}
+echo "</ul>";
 
-//kijken hoeveel teams er in de database zitten
-//$sql1= "SELECT COUNT(*) FROM ORDER BY `teams`. `name`";
-//$query = $db->query($sql1);
-//$teamss = $query->fetchAll(PDO::FETCH_ASSOC);
+?>
+<form action="competitieController.php" method="post">
+    <input type="hidden" name="type" value="check">
+    <div class="button">
+        <input type="submit" value="bevestig" name="button">
+    </div>
+</form>
+<?php
+require 'config.php';
 
-//$total = $teamss[0];
+if ($_POST ['type'] == 'check') {
+    $sql = "INSERT INTO match (team1, team2 ) 
+values (:team1, :team2)";
 
-//foreach ($total as $totals){
-//    echo $total;
-//}
+    $prepare = $db->prepare($sql);
+    $prepare->execute([
+        ':team1'     => $team1,
+        ':team2'     => $team2
+    ]);
+}
 
-//
 
-//hoeveelheid in kwadraat - hoeveelheid
-//$number = pow($total, 2) - $total;
 
-// number delen door 2 = aantal wedstijden
-//$result = $number / 2;
-
-//result moet nu teams onderelkaar zetten op hoeveel heid
-
-// teams naast elkaar plaatsen
-
-//teams mogen niet tegen zig zelf
-//if (){
-
-//}

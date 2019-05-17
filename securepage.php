@@ -30,6 +30,9 @@ if($_SESSION['sid']==session_id())
     <div>
         <a href=\"scheme.php\">Bekijk de wedstrijd schema</a>
     </div>
+    <div>
+        <a href=\"players.php\">voeg spelers toe</a>
+    </div>
 </div>
 </body>
 </html>";

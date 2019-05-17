@@ -82,6 +82,7 @@ if ($_POST ['type'] == 'login') {
     $password = $_POST['password'];
     $admin= $_POST['admin'];
 
+
     $connect = mysqli_connect($dbHost, $dbUser, $dbPss, $dbName);
 
     $sqlLogin = "SELECT * FROM users WHERE  email = '" . $email . "'";
@@ -94,6 +95,7 @@ if ($_POST ['type'] == 'login') {
         if (password_verify($password, $userPasswordUnhash)) {
             session_start();
             $_SESSION['sid'] = session_id();
+            $_SESSION['pId'] = $row['id'];
 
 
             if ($row['admin'] == 1) {

@@ -13,9 +13,8 @@ echo "Je bent admin";
     echo '<ul>';
     foreach ($teams as $team){
         $name = htmlentities($team['name']);
-        $players= htmlentities($team ['players']);
-        $coach= htmlentities($team ['coach']);
-        echo "<li><a href='delete_controler.php?id={$team['id']}'>$name $players $coach</a></li>";
+        $coach= htmlentities($team ['maker']);
+        echo "<li><a href='delete_controler.php?id={$team['id']}'>$name, $coach</a></li>";
     }
     echo '</ul>';
 
@@ -34,6 +33,7 @@ else {
             <div class="button">
                 <input type="submit" value="team">
             </div>
-
         </form>
     </div>
+
+    <a href="team.php">maak een team</a>
