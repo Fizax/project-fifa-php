@@ -82,7 +82,6 @@ if ($_POST ['type'] == 'login') {
     $password = $_POST['password'];
     $admin= $_POST['admin'];
 
-
     $connect = mysqli_connect($dbHost, $dbUser, $dbPss, $dbName);
 
     $sqlLogin = "SELECT * FROM users WHERE  email = '" . $email . "'";

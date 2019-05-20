@@ -4,6 +4,8 @@ $sql = "SELECT * FROM users";              //string even opslaan die we later ga
 $query = $db->query($sql);                      //qurey verzoek data base sla ik op in variablke
 $users = $query->fetchAll(PDO::FETCH_ASSOC); //multie demensionale array //alle colomen wil ik fetchen -> binnen halen
 
+//SELECT users.id, users.email, teams.name FROM users INNER JOIN teams ON users.team = teams.id
+
 ?>
 <!doctype html>
 <html lang="en">

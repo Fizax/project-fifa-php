@@ -31,9 +31,17 @@ else {
         <form action="competitieController.php" method="post">
             <input type="hidden" name="type" value="team">
             <div class="button">
-                <input type="submit" value="team">
+                <input type="submit" value="schema">
             </div>
         </form>
+        <div>
+            <a href="team.php">maak een team</a>
+        </div>
+        <div>
+            <a href="players.php">speler aan team toevoegen</a>
+        </div>
     </div>
 
-    <a href="team.php">maak een team</a>
+
+
+

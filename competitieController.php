@@ -5,18 +5,10 @@
  * Date: 13-May-19
  * Time: 10:35
  */
-
-
 require 'config.php';
-
 $sql = "SELECT * FROM teams";
-
 $query = $db->query($sql);
-
 $teams = $query->fetchAll(PDO::FETCH_ASSOC);
-
-
-
 $amountOfTeams = count($teams);
 
 echo "<ul>";
@@ -39,17 +31,23 @@ echo "</ul>";
     </div>
 </form>
 <?php
-require 'config.php';
 
+require 'config.php';
 if ($_POST ['type'] == 'check') {
-    $sql = "INSERT INTO match (team1, team2 ) 
+
+        $sql = "INSERT INTO `match` (team1, team2) 
 values (:team1, :team2)";
 
-    $prepare = $db->prepare($sql);
-    $prepare->execute([
-        ':team1'     => $team1,
-        ':team2'     => $team2
-    ]);
+        $prepare = $db->prepare($sql);
+        $prepare->execute([
+            ':team1'     => $team1,
+            ':team2'     => $team2
+        ]);
+
+        header('Location: admin.php');
+        exit;
+
+
 }
 
 

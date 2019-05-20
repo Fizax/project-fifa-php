@@ -8,8 +8,6 @@ $databaseName = "project_fifa";
 $connect = mysqli_connect($hostname, $username, $password, $databaseName);
 $query = "SELECT * FROM `teams`";
 $result = mysqli_query($connect, $query);
-
-
 ?>
 
 <?php
@@ -37,6 +35,5 @@ $team = $prepare->fetch(PDO::FETCH_ASSOC);
                     <option id="team" value="<?php echo $row[0];?>"><?php echo $row[1];?></option>
                 <?php endwhile;?>
             </select>
-            </div>
             <input type="submit" id='addPlayer' value="voeg toe">
         </form>
