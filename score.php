@@ -17,15 +17,15 @@ $match = $prepare->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <body>
-<h1>Edit user</h1>
+<h1>score:</h1>
 <form action="score.php?id=<?=$id?>" method="post">
     <input type="hidden" name="type" value="score">
     <div class="form-group">
-        <label for="score1" > team 1</label>
+        <label for="score1" > <?php echo htmlentities($match['team1']) ?></label>
         <input type="text" id="score1" name="score1" value="<?= htmlentities($match['score1']) ?>" >
     </div>
     <div class="form-group">
-        <label for="score2" >team 2</label>
+        <label for="score2" > <?php echo htmlentities($match['team2']) ?></label>
         <input type="text" id="score2" name="score2" value="<?= htmlentities($match['score2']) ?>">
     </div>
     <input type="submit" id='score_b' value="bevestig score">
