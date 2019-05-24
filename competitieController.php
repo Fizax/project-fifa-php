@@ -30,7 +30,6 @@ values (:team1, :team2)";
                 ':team2'     => $team2
             ]);
         }
-
     }
 }
 
